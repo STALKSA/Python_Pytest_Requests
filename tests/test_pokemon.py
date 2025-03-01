@@ -1,9 +1,7 @@
 import requests
 
-# Базовый URL API покемонов
-BASE_URL = "https://api.pokemonbattle.ru/v2"
 
-# ID вашего тренера
+BASE_URL = "https://api.pokemonbattle.ru/v2"
 TRAINER_ID = 22038
 
 # Тест для проверки GET /trainers
@@ -13,7 +11,7 @@ def test_get_trainers():
     """
     url = f"{BASE_URL}/trainers"
     params = {
-        "trainer_id": TRAINER_ID  # Передаем ID тренера как параметр запроса
+        "trainer_id": TRAINER_ID 
     }
     response = requests.get(url, params=params)
     assert response.status_code == 200, f"Ожидался код 200, но получен {response.status_code}"
@@ -25,17 +23,17 @@ def test_trainer_name():
     """
     url = f"{BASE_URL}/trainers"
     params = {
-        "trainer_id": TRAINER_ID  # Передаем ID тренера как параметр запроса
+        "trainer_id": TRAINER_ID  
     }
     response = requests.get(url, params=params)
     response_json = response.json()
 
-    # Проверяем, что ответ содержит данные
+ 
     assert "data" in response_json, "Ключ 'data' отсутствует в ответе"
     assert response_json["data"], "Данные тренера отсутствуют в ответе"
 
     # Извлекаем данные тренера из массива data
-    trainer_data = response_json["data"][0]  # Берем первый элемент массива
+    trainer_data = response_json["data"][0]  
     assert "trainer_name" in trainer_data, "Ключ 'trainer_name' отсутствует в данных тренера"
 
     # Проверяем, что имя тренера равно 'STALK'
