@@ -1,15 +1,13 @@
 import requests
 
-# Базовый URL API
-BASE_URL = 'https://api.pokemonbattle.ru/v2'
 
-# Токен тренера (замените на ваш токен)
-TRAINER_TOKEN = 'YOUR_TRAINER_TOKEN'
+BASE_URL = 'https://api.pokemonbattle.ru/v2'
+TRAINER_TOKEN = 'MY_TRAINER_TOKEN'
 
 # Заголовки для запросов
 headers = {
     "Content-Type": "application/json",
-    "trainer_token": TRAINER_TOKEN  # Токен передается в заголовке
+    "trainer_token": TRAINER_TOKEN  
 }
 
 # 1. Создание покемона (POST /pokemons)
@@ -17,14 +15,14 @@ def create_pokemon():
     url = f"{BASE_URL}/pokemons"
     data = {
         "name": "Бульбазавр",
-        "photo_id": 1  # ID фото покемона
+        "photo_id": 1  
     }
     try:
-        response = requests.post(url, json=data, headers=headers, verify=False)  # Отключение SSL
+        response = requests.post(url, json=data, headers=headers, verify=False)  
         print("Создание покемона:")
         print(response.status_code)
         print(response.json())
-        return response.json().get("id")  # Возвращаем ID созданного покемона
+        return response.json().get("id") 
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при выполнении запроса: {e}")
         return None
@@ -34,11 +32,11 @@ def update_pokemon(pokemon_id):
     url = f"{BASE_URL}/pokemons"
     data = {
         "pokemon_id": pokemon_id,
-        "name": "Бульбазаврррр",  # Новое имя покемона
-        "photo_id": 2  # Новое фото покемона
+        "name": "Бульбазаврррр", 
+        "photo_id": 2  
     }
     try:
-        response = requests.patch(url, json=data, headers=headers, verify=False)  # Отключение SSL
+        response = requests.patch(url, json=data, headers=headers, verify=False)  
         print("Изменение покемона:")
         print(response.status_code)
         print(response.json())
@@ -52,7 +50,7 @@ def catch_pokemon(pokemon_id):
         "pokemon_id": pokemon_id
     }
     try:
-        response = requests.post(url, json=data, headers=headers, verify=False)  # Отключение SSL
+        response = requests.post(url, json=data, headers=headers, verify=False)  
         print("Поймать покемона в покебол:")
         print(response.status_code)
         print(response.json())
